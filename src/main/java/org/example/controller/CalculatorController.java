@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class CalculatorController {
 
-    private Calculator calculator;
+  private Calculator calculator;
 
-    @GetMapping("sum")
-    public int sum(){
-        log.info("Hello this is the sum method");
-        return calculator.sum(5,5);
-    }
+  @GetMapping("sum")
+  public int sum() {
+    log.info("Hello this is the sum method");
+    return calculator.sum(5, 5);
+  }
 }
