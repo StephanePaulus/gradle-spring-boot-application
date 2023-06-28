@@ -15,5 +15,5 @@ jobs:
     steps:
       - run: |
           echo 'The triggering workflow passed'
-          echo ${{ github.event.head_commit.message }}
+          echo ${{ github.event.workflow_run.head_commit.message }}
           echo ${{ toJSON(github.event) }}
