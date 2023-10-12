@@ -5,7 +5,8 @@ plugins {
     id 'java'
     id 'com.diffplug.spotless' version "6.19.0"
     id 'io.freefair.lombok' version "8.0.1"
-    id 'pl.allegro.tech.build.axion-release' version "1.15.3"
+    id 'pl.allegro.tech.build.axion-release' version "1.15.5"
+    id("com.google.cloud.tools.jib") version "3.3.2"
 }
 
 scmVersion {
@@ -52,5 +53,14 @@ spotless {
     java {
         removeUnusedImports()
         palantirJavaFormat().style("GOOGLE")
+    }
+}
+
+jib {
+    from {
+        image = "stephanepaulus/base-java17:main"
+    }
+    to {
+        image = "stephanepaulus/spring-boot-application"
     }
 }
