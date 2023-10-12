@@ -1,0 +1,21 @@
+name: tag-build
+
+on:
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish-release:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Send greeting
+        run: echo "Hello world"
+
+
+          
+
