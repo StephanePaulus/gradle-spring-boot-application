@@ -9,6 +9,7 @@ public class Calculator {
 
   public int sum(final int a, final int b) {
     log.info("Hello {} + {} is {}", a, b, a + b);
+
     return a + b;
   }
 }
