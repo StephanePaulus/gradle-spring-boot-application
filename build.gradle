@@ -10,6 +10,13 @@ plugins {
 }
 
 scmVersion {
+    snapshotCreator({ version, position -> {
+        if(position.branch != 'main'){
+            "-alpha"
+        }else{
+            "-rc-"+position.shortRevision
+        }
+    }})
     versionCreator('versionWithBranch')
     repository {
         pushTagsOnly = true
@@ -17,7 +24,7 @@ scmVersion {
     checks {
         uncommittedChanges = false
         aheadOfRemote = false
-        snapshotDependencies = false
+        snapshotDependencies = true
     }
     versionIncrementer('incrementMinor')
 }
