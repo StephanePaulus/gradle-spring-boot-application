@@ -69,6 +69,7 @@ jib {
     }
     to {
         image = "stephanepaulus/spring-boot-application"
+        tags = [version]
     }
-    tags = [version]
+
 }
