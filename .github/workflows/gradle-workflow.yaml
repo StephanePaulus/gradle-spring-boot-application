@@ -85,3 +85,8 @@ jobs:
 
 #### RUN extra test => if success without automation either push tag manually or create github release with the version you want
 ####                 ==> TAG will also create a github release
+
+
+#### AFTER github release => trigger either promotion/tagging of docker image [or new build]
+####                       ==> promote/change argo-cd_helm imagetag for PRE-PROD
+####                        ===> PRE-PROD to PROD will have its own test, release-cycle, ...
