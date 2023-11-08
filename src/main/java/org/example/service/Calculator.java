@@ -11,4 +11,9 @@ public class Calculator {
     log.info("Hello {} + {} is {}", a, b, a + b);
     return a + b;
   }
+
+  public int multipy(final int a, final int b) {
+    log.info("Hello {} + {} is {}", a, b, a * b);
+    return a * b;
+  }
 }

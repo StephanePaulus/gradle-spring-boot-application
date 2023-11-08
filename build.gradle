@@ -6,7 +6,9 @@ plugins {
     id 'com.diffplug.spotless' version "6.19.0"
     id 'io.freefair.lombok' version "8.0.1"
     id 'pl.allegro.tech.build.axion-release' version "1.15.5"
-    id("com.google.cloud.tools.jib") version "3.3.2"
+    id 'com.google.cloud.tools.jib' version "3.3.2"
+    id 'jacoco-report-aggregation'
+    id 'org.sonarqube' version "4.4.1.3373"
 }
 
 scmVersion {
@@ -37,6 +39,10 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    integrationTestImplementation.extendsFrom testImplementation
+}
+
 dependencies {
     annotationProcessor platform(SpringBootPlugin.BOM_COORDINATES)
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
@@ -52,8 +58,30 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-test{
-    useJUnitPlatform()
+testing {
+    suites {
+        test {
+            useJUnitJupiter()
+        }
+
+        integrationTest(JvmTestSuite) {
+            dependencies {
+                implementation project()
+            }
+
+            targets {
+                all {
+                    testTask.configure {
+                        shouldRunAfter(test)
+                    }
+                }
+            }
+        }
+    }
+}
+
+tasks.named('check') {
+    dependsOn(testing.suites.integrationTest)
 }
 
 spotless {
@@ -71,5 +99,12 @@ jib {
         image = "stephanepaulus/spring-boot-application"
         tags = [version]
     }
+}
 
+sonar {
+    properties {
+        property "sonar.projectKey", "StephanePaulus_gradle-spring-boot-application"
+        property "sonar.organization", "stephanepaulus"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
 }
