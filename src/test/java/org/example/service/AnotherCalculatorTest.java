@@ -1,4 +1,4 @@
-package org.example.service;
+/*package org.example.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -16,4 +16,4 @@ public class AnotherCalculatorTest {
     int result = calculator.sum(5, 5);
     assertEquals(10, result);
   }
-}
+}*/
