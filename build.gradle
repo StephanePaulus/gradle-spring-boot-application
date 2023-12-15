@@ -106,6 +106,7 @@ sonar {
         property "sonar.projectKey", "StephanePaulus_gradle-spring-boot-application"
         property "sonar.organization", "stephanepaulus"
         property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.gradle.skipCompile", true
         if(System.getenv("PR_KEY") != null) {
             property "sonar.pullrequest.key", System.getenv("PR_KEY")
             property "sonar.pullrequest.branch", System.getenv("PR_BRANCH")
