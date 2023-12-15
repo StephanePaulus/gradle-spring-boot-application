@@ -31,7 +31,7 @@ scmVersion {
     versionIncrementer('incrementMinor')
 }
 
-group = 'org.example'
+group = 'org.example.test'
 version = scmVersion.version
 description = 'simple spring-boot gradle application'
 
