@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: check
         run: |
-          echo ${github.event}
+          echo github.event
