@@ -3,10 +3,11 @@ name: Java CI with Gradle
 on:
   push:
     branches:
-      - '**'
+      - 'main'
+  pull_request:
+  workflow_dispatch:
   release:
     types: [ published ]
-
 
 permissions: write-all
 
@@ -24,6 +25,10 @@ jobs:
           distribution: 'temurin'
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
+        env:
+          PR_KEY: ${{github.event.pull_request.number}}
+          PR_BRANCH: ${{github.head_ref}}
+          PR_BASE: ${{github.base_ref}}
         with:
           arguments: build
 
