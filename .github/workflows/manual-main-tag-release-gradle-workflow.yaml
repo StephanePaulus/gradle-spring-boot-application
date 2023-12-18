@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'main'
+  pull_request:
   workflow_dispatch:
   release:
     types: [ published ]
@@ -22,28 +23,12 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - name: Dump job context
-        env:
-          JOB_CONTEXT: ${{ toJson(job) }}
-        run: echo "$JOB_CONTEXT"
-      - name: test
-        env:
-          BRANCH_NAME: $(echo ${GITHUB_REF#refs/heads/} | tr / -)
-          PR_BRANCH: ${{github.head_ref}}
-          PR_BASE: ${{github.base_ref}}
-        run: |
-          echo "BRANCH_NAME"
-          echo "PR_BRANCH"
-          echo "PR_BASE"
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          BRANCH_NAME: $(echo ${GITHUB_REF#refs/heads/} | tr / -)
+          BRANCH_NAME: ${{github.head_ref}}
+          PR_KEY: ${{github.event.pull_request.number}}
           PR_BRANCH: ${{github.head_ref}}
           PR_BASE: ${{github.base_ref}}
         with:
