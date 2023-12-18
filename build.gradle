@@ -3,9 +3,9 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 plugins {
     id 'org.springframework.boot' version '2.7.7' apply false
     id 'java'
-    id 'com.diffplug.spotless' version "6.19.0"
+    id 'com.diffplug.spotless' version "6.23.3"
     id 'io.freefair.lombok' version "8.0.1"
-    id 'pl.allegro.tech.build.axion-release' version "1.15.5"
+    id 'pl.allegro.tech.build.axion-release' version "1.16.1"
     id 'com.google.cloud.tools.jib' version "3.3.2"
     id 'jacoco-report-aggregation'
     id 'org.sonarqube' version "4.4.1.3373"
@@ -111,6 +111,9 @@ sonar {
             property "sonar.pullrequest.key", System.getenv("PR_KEY")
             property "sonar.pullrequest.branch", System.getenv("PR_BRANCH")
             property "sonar.pullrequest.base", System.getenv("PR_BASE")
+        }else{
+            property "sonar.branch.name", System.getenv("BRANCH_NAME")
+            property "sonar.branch.target", "main"
         }
     }
 }
