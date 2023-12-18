@@ -27,7 +27,7 @@ jobs:
         uses: gradle/gradle-build-action@v2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          BRANCH_NAME: ${{github.ref}}
+          BRANCH_NAME: $(echo ${GITHUB_REF#refs/heads/} | tr / -)
           PR_KEY: ${{github.event.pull_request.number}}
           PR_BRANCH: ${{github.head_ref}}
           PR_BASE: ${{github.base_ref}}
