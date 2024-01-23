@@ -1,4 +1,4 @@
-name: Manual/main Java CI with Gradle
+name: Release Java CI with Gradle
 
 on:
   push:
@@ -32,14 +32,14 @@ jobs:
         run: echo "$JOB_CONTEXT"
       - name: test
         env:
-          BRANCH_NAME: ${{github.ref_name}}
+          BRANCH_NAME: ${{github.event.release.target_commitish}}
         run: |
           echo "BRANCH_NAME"
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          BRANCH_NAME: ${{github.ref_name}}
+          BRANCH_NAME: ${{github.event.release.target_commitish}}
         with:
           arguments: build sonar
 
