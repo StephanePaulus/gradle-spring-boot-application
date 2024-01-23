@@ -1,4 +1,4 @@
-name: Java CI with Gradle
+name: Manual/main/tag/release Java CI with Gradle
 
 on:
   push:

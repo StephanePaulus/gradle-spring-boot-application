@@ -1,4 +1,4 @@
-name: Java CI with Gradle
+name: Pull request Java CI with Gradle
 
 on:
   pull_request:
