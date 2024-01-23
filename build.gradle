@@ -101,6 +101,10 @@ jib {
     }
 }
 
+tasks.named('check') {
+    dependsOn tasks.named('testCodeCoverageReport', JacocoReport)
+}
+
 sonar {
     properties {
         property "sonar.projectKey", "StephanePaulus_gradle-spring-boot-application"
