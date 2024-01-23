@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: "spring-boot-example"
+  kafka:
+    bootstrap-servers: [localhost:9092]
+    properties:
+      auto.register.schemas: false
+      schema.registry.url: http://localhost:8081
+      normalize.schemas: true
+      use.latest.version: true
+      security.protocol: PLAINTEXT
+      sasl.mechanism: PLAIN
+      sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username=empty password=empty;
+    producer:
+      key-serializer: org.springframework.kafka.support.serializer.DelegatingSerializer
+      value-serializer: io.confluent.kafka.serializers.protobuf.KafkaProtobufSerializer
+server:
+  port: 8080

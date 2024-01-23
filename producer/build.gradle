@@ -1,0 +1,37 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+plugins {
+    id 'org.springframework.boot' version '3.3.1' apply false
+    id 'java'
+    id 'io.freefair.lombok' version "8.6"
+}
+
+group = 'com.example'
+version = '1.0.0'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven{
+        url	"https://packages.confluent.io/maven/"
+    }
+}
+
+dependencies {
+    annotationProcessor platform(SpringBootPlugin.BOM_COORDINATES)
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    implementation platform(SpringBootPlugin.BOM_COORDINATES)
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.kafka:spring-kafka'
+
+    implementation 'org.example:proto:1.0.0'
+
+    implementation 'io.confluent:kafka-protobuf-serializer:7.6.1'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+

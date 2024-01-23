@@ -1,2 +1,17 @@
+pluginManagement {
+    repositories {
+        maven {
+            url = "https://packages.confluent.io/maven/"
+        }
+        maven {
+            url = "https://jitpack.io"
+        }
+        gradlePluginPortal()
+    }
+}
+
 rootProject.name = 'simple-spring-boot'
+include 'consumer'
+include 'producer'
+include 'proto'
 
