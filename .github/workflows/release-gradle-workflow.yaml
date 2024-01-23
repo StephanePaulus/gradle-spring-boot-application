@@ -1,10 +1,6 @@
 name: Release Java CI with Gradle
 
 on:
-  push:
-    branches:
-      - 'main'
-  workflow_dispatch:
   release:
     types: [ published ]
 
