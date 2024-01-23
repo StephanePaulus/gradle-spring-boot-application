@@ -113,7 +113,9 @@ sonar {
             property "sonar.pullrequest.base", System.getenv("PR_BASE")
         }else{
             property "sonar.branch.name", System.getenv("BRANCH_NAME")
-            property "sonar.branch.target", "main"
+            if(!"main".equalsIgnoreCase(System.getenv("BRANCH_NAME"))) {
+                property "sonar.branch.target", "main"
+            }
         }
     }
 }
