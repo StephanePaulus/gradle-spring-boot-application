@@ -1,7 +1,7 @@
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
-    id 'org.springframework.boot' version '2.7.7' apply false
+    id 'org.springframework.boot' version '3.2.2' apply false
     id 'java'
     id 'com.diffplug.spotless' version "6.23.3"
     id 'io.freefair.lombok' version "8.0.1"
@@ -107,13 +107,13 @@ sonar {
         property "sonar.organization", "stephanepaulus"
         property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.gradle.skipCompile", true
-        //if(System.getenv("PR_KEY") != null) {
+        if(System.getenv("PR_KEY") != null) {
             property "sonar.pullrequest.key", System.getenv("PR_KEY")
             property "sonar.pullrequest.branch", System.getenv("PR_BRANCH")
             property "sonar.pullrequest.base", System.getenv("PR_BASE")
-        //}else{
+        }else{
             property "sonar.branch.name", System.getenv("BRANCH_NAME")
             property "sonar.branch.target", "main"
-        //}
+        }
     }
 }
